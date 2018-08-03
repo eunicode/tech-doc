@@ -1,0 +1,23 @@
+{
+  "name": "tech-doc",
+  "version": "1.0.0",
+  "description": "tech-doc",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eunicode/tech-doc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eunicode/tech-doc/issues"
+  },
+  "homepage": "https://github.com/eunicode/tech-doc#readme",
+  "devDependencies": {
+    "browser-sync": "^2.24.6",
+    "gulp": "^4.0.0"
+  }
+}

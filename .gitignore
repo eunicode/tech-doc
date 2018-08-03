@@ -1,0 +1,26 @@
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# CSS
+.sass-cache/
+*.css.map
+
+# Optional eslint cache
+.eslintcache
+
+# Production
+build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
