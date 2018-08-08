@@ -118,4 +118,68 @@ footer img {
 	}
 }
 
-/* ---- Flexbox ---- */
+/* ---- For browsers that support Grid ---- */
+
+@supports (grid-area: auto) {
+
+    /* Nav bar on top (1 col) */
+
+    nav {
+        grid-area: nav;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    body {
+        display: grid;
+        grid-template-areas: 
+        "nav"
+        "main"
+        "footer"
+    }
+
+    /* Nav bar on left (2 col) */
+
+    @media (min-width: 769px) {
+        body {
+            grid-template-columns: 20em auto;
+        }
+
+        nav {
+            grid-column: 1/2;
+        }
+
+        main {
+            grid-column: 2/3;
+            /* Need to specify which row we want to put `main` in, otherwise the
+            browser will auto position it in an unexpected way. */
+            grid-row: 1/3;
+        }
+
+        footer {
+            grid-column: 1/3;
+        }
+    }
+}
+
+/* ---- For browsers that support Flexbox ---- */
+
+/* @supports (display: flex) {
+    body {
+        display: flex;
+    }
+
+    @media (min-width: 769px) {
+        flex-direction: row;
+    }
+} */
+
+/* You can turn the top nav bar into a sidebar with Flexbox with `flex-direction: row`, 
+but you need to add extra html tags to wrap the nav bar and main content, 
+since we want footer to remain `flex-direction: column` */
