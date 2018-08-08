@@ -149,22 +149,12 @@ footer img {
     @media (min-width: 769px) {
         body {
             grid-template-columns: 20em auto;
+            grid-template-areas: 
+            "nav main"
+            "nav main"
+            "footer footer"
         }
 
-        nav {
-            grid-column: 1/2;
-        }
-
-        main {
-            grid-column: 2/3;
-            /* Need to specify which row we want to put `main` in, otherwise the
-            browser will auto position it in an unexpected way. */
-            grid-row: 1/3;
-        }
-
-        footer {
-            grid-column: 1/3;
-        }
     }
 }
 
