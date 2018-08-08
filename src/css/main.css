@@ -1,0 +1,121 @@
+/* Base styles apply to all browsers: phone, tablet, desktop computer */
+
+/* ================================= 
+  Base Element Styles
+==================================== */
+
+/* ---- CSS Variables ---- */
+:root {
+    --gray-dark: #3a3a3a;
+    --gray-light:#f2f2f2;
+    --gray-light-med: #d9d9d9;
+    --gray-med: #757882;
+    --red-bright: #ff6473;
+    --aqua: #6ef7c8;
+    --aqua-med: #5cc1b3;
+}
+
+/* Include padding and border in the element's total width and height */
+* {
+	box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--gray-dark);
+    margin: 0;
+    line-height: 1.6;
+    /* background-color: var(--gray-light); */
+}
+
+ul {
+    list-style: none;
+    padding: 0px; /* Override default */
+    margin: 0px /* Override default and fix collapsing margins */
+}
+
+a {
+    text-decoration: none;
+}
+
+code {
+    /* background-color: var(--gray-med); */
+    color: var(--red-bright);
+    /* color: var(--gray-med); */
+}
+
+/* ================================= 
+  Base Layout Styles
+==================================== */
+
+/* ---- Navigation ---- */
+
+nav {
+    text-align: center;
+}
+
+nav header {
+    color: white;
+    background-color: var(--aqua-med);
+    padding: 4em 0em;
+}
+
+nav h1 {
+    margin: 0px; /* Get rid of space on top */
+}
+
+nav ul {
+    padding: 10px;
+    background-color: var(--gray-light);
+}
+
+nav li {
+    background-color: var(--gray-light);
+}
+
+nav a {
+    padding: 10px 0px;
+    display: block; /* Can't apply vertical padding on inline elements */
+    color: var(--aqua-med);
+    cursor: pointer;
+}
+
+nav a:hover {
+    /* color: var(--aqua); */
+    background-color: var(--gray-light-med);
+}
+
+/* ---- Layout Containers ---- */
+
+main {
+    padding-right: 1em;
+	padding-left: 1em;
+}
+
+footer {
+    background-color: var(--gray-light);
+    /* color: var(--aqua-med); */
+    color: var(--gray-med);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .8em;
+    letter-spacing: 1px;
+}
+
+footer img {
+    height: 1em;
+}
+/* ================================= 
+  Media Queries
+==================================== */
+
+/* For widths >= 769px, constrain main content's width */
+@media (min-width: 769px) {
+	main {
+		width: 80%;
+		margin: 0 auto; /* Centers element, but not text */
+		max-width: 1150px; /* Since max-width is set, even on extremely wide browsers, the main text will be contained */
+	}
+}
+
+/* ---- Flexbox ---- */
