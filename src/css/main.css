@@ -94,7 +94,6 @@ main {
 
 footer {
     background-color: var(--gray-light);
-    /* color: var(--aqua-med); */
     color: var(--gray-med);
     text-align: center;
     text-transform: uppercase;
@@ -137,7 +136,9 @@ footer img {
     }
 
     body {
+        height: 100vh;
         display: grid;
+        grid-template-rows: auto 1fr auto;
         grid-template-areas: 
         "nav"
         "main"
@@ -148,13 +149,23 @@ footer img {
 
     @media (min-width: 769px) {
         body {
+            height: 100vh; /* Set height of container to 100vh for sticky footer.
+            Alternatively, set both `html` and `body` to 100%. */
             grid-template-columns: 20em auto;
+            grid-template-rows: 1fr auto; /* 1fr will take up remaining vertical
+            space, auto will take up the height of the content. [Sticky footer] */
             grid-template-areas: 
-            "nav main"
             "nav main"
             "footer footer"
         }
 
+        nav {
+            background-color: var(--gray-light);
+        }
+
+        footer {
+            background-color: var(--gray-light-med);
+        }
     }
 }
 
