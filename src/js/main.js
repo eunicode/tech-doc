@@ -1,10 +1,27 @@
-// SCRIPT TAG METHOD
+// Method #1: SCRIPT TAG METHOD
 // Use JS code in another file by adding script tag in HTML in the correct order
 // <script src="data/data.js"></script>
 
-const DOMNode = document.querySelector('#main-doc');
+// const DOMNode = document.querySelector('#main-doc');
 
-console.log({ data });
+// console.log({ data });
+
+// data.map(x => {
+//     const listItem = document.createElement('div');
+//     listItem.className = 'main-section';
+//     listItem.innerHTML = `<h4>${x.title}</h4>
+//     <p>${x.info}</p>`;
+//     DOMNode.appendChild(listItem);
+// });
+
+// Method #2: INSERT SCRIPT TAG INTO THE DOM (AJAX technique)
+// The script will download and execute immediately. But it is still difficult to manage your dependencies. You can never guarantee that multiple scripts will load and execute in the order you need them.
+
+const script = document.createElement("script");
+script.src = "data/data.js";
+document.head.appendChild(script);
+
+const DOMNode = document.querySelector('#main-doc');
 
 data.map(x => {
     const listItem = document.createElement('div');
@@ -14,7 +31,7 @@ data.map(x => {
     DOMNode.appendChild(listItem);
 });
 
-// AJAX + JSON METHOD
+// Method #3: AJAX + JSON METHOD
 // Store data in JS object so I can use template literals. The pro using of template literals is that any newline characters inserted in the source are part of the template literal. In other words, it's easier to write multi-line strings.
 // Then convert JS object to a JSON string with JSON.stringify() method. This is bc when exchanging data between a browser and a server, the data can only be text/blob/etc. When we receive JSON data from the server, we can easily convert JSON data to JS objects.
 
