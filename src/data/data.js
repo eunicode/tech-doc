@@ -72,8 +72,4 @@ const data = [
 
 ];
 
-// Turn JS object into JSON string
-const dataJSONString = JSON.stringify(data);
-console.log(dataJSONString);
-
 // export default data;
