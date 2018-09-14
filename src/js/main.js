@@ -40,34 +40,65 @@
 // Then convert JS object to a JSON string with JSON.stringify() method. This is bc when exchanging data between a browser and a server, the data can only be text/blob/etc. When we receive JSON data from the server, we can easily convert JSON data to JS objects.
 
 function loadData(url) {
-    let dataA;
-    const DOMNode = document.querySelector('#main-doc');
 
-    const request = new XMLHttpRequest;
+    // Create Promise object
+    return new Promise( 
 
-    request.open('GET', url);
+        // Executor function with `resolve` function passed as an argument 
+        function(resolve) {
 
-    request.onreadystatechange = () => {
-        if (request.status === 200 && request.readyState === 4) {
-            dataA = JSON.parse(request.responseText);
-            console.log({ dataA });
-            for (const item in dataA.key) {
-                if (dataA.key.hasOwnProperty(item)) {
-                    const element = dataA.key[item];
-                    const listItem = document.createElement('div');
-                    listItem.className = 'main-section';
-                    listItem.innerHTML = `<h4>${element.title}</h4>
-                    <p>${element.info}</p>`;
-                    DOMNode.appendChild(listItem);
+            // Create XMLHttpRequest Object
+            const request = new XMLHttpRequest;
+            
+            // Open request
+            request.open('GET', url);
+             
+            // AJAX event callback function
+            request.onreadystatechange = () => {
+                if (request.status === 200 && request.readyState === 4) {
+                    // Call `resolve` callback function once asynchronous work completes
+                    // `resolve`'s first argument is the value the promise will become if the promise is fulfilled
+                    resolve(JSON.parse(request.responseText));
                 }
+            }
+
+            // Send request
+            request.send(); 
+
+        }
+
+    );
+
+}
+
+// See Promise object
+// {
+//     __proto__: Promise,
+//     [[PromiseStatus]]: "resolved",
+//     [[PromiseValue]]: { key: [...] }
+// }
+console.log(loadData('../data/data.json'));
+
+loadData('../data/data.json').then(
+    // The first argument of `then` is the onFulfilled function
+    // The onFulfilled function has one argument, the fulfillment value
+    function(dataI) { 
+        console.log({ dataI });
+        
+        const DOMNode = document.querySelector('#main-doc');
+
+        for (const item in dataI.key) {
+            if (dataI.key.hasOwnProperty(item)) {
+                const element = dataI.key[item];
+                const listItem = document.createElement('div');
+                listItem.className = 'main-section';
+                listItem.innerHTML = `<h4>${element.title}</h4>
+                <p>${element.info}</p>`;
+                DOMNode.appendChild(listItem);
             }
         }
     }
-
-    request.send();
-}
-
-loadData('../data/data.json');
+);
 
 // TO DO
 // Use promises
