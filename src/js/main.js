@@ -46,10 +46,6 @@
 // from the server, we can easily convert JSON data to JS objects.
 
 function loadData(url) {
-
-    // Experiment with closure
-    // Keep this variable "alive"
-    const DOMNode = document.querySelector('#main-doc');
   
     // Create Promise object
     return new Promise( 
@@ -69,17 +65,7 @@ function loadData(url) {
                     // Call `resolve` callback function once asynchronous work completes
                     // `resolve`'s first argument is the value the promise will become if the promise 
                     // is fulfilled
-                    resolve({
-                        // `resolve` has a lexical scope closure over the scope of `loadData`.
-                        // `resolve` keeps and uses a reference to the variable `DOMNode`.
-                        // After we have executed `loadData`, after we waited for the server response,
-                        // `resolve` still has closure over `loadData`'s scope.
-                        // So when the asynchronous work is completed, and we call the `resolve`
-                        // function to resolve the promise, the lexical scope reference to the
-                        // variable `DOMNode` is still intact.
-                        closure: DOMNode,
-                        data: JSON.parse(request.responseText)
-                    });
+                    resolve(JSON.parse(request.responseText));
                 }
             }
   
@@ -89,18 +75,30 @@ function loadData(url) {
         }
   
     );
+
+}
   
-  }
-  
-  // See first Promise object
-  // {
-  //     __proto__: Promise,
-  //     [[PromiseStatus]]: "resolved",
-  //     [[PromiseValue]]: { closure: ..., data: {key: [...]} }
-  // }
-  console.log(loadData('../data/data.json'));
-  
-  loadData('../data/data.json').then(
+// See first Promise object
+// {
+//     __proto__: Promise,
+//     [[PromiseStatus]]: "resolved",
+//     [[PromiseValue]]: { key: [...] }
+// }
+console.log(loadData('../data/data.json'));
+
+// See Promise object returned by `then` - no arguments
+// If both arguments are omitted from `then`, then when the Promise that `then` is called on adopts
+// the state fulfilled, a new Promise is created that is identical to the Promise on which `then`
+// was called.
+console.log(loadData('../data/data.json').then()); // { closure: ..., data: ...}
+
+// See Promise object returned by `then` - `onFulfilled` returns a value
+console.log(loadData('../data/data.json').then(function(data) { return 6; })); // 6
+
+// See Promise object returned by `then` - `onFulfilled` returns nothing
+console.log(loadData('../data/data.json').then(function(data) { 1 + 2; })); // undefined 
+
+loadData('../data/data.json').then(
     //  The `then` method returns a Promise in the pending status.
     // The first argument of `then` is the `onFulfilled` function
     // The `onFulfilled` function has one argument, the fulfillment value
@@ -109,18 +107,28 @@ function loadData(url) {
     // If `onFulfilled` returns nothing, the promise gets resolved with `undefined`
     function(dataI) { 
         console.log({ dataI });
+
+        const DOMNode = document.querySelector('#main-doc');
         
-        for (const item in dataI.data.key) {
-            if (dataI.data.key.hasOwnProperty(item)) {
-                const element = dataI.data.key[item];
+        for (const item in dataI.key) {
+            if (dataI.key.hasOwnProperty(item)) {
+                const element = dataI.key[item];
                 const listItem = document.createElement('div');
                 listItem.className = 'main-section';
                 listItem.innerHTML = `<h4>${element.title}</h4>
                 <p>${element.info}</p>`;
-
-                // dataI.closure = DOMNode
-                dataI.closure.appendChild(listItem);
+                DOMNode.appendChild(listItem);
             }
         }
+
     }
-  );
+);
+
+// TO DO
+// Use promises ✓
+// Convert XHR to fetch
+// Async/await
+
+// Change anonymous functions to named functions
+// Change function declarations to arrow functions
+// Refactor onreadystatechange handler to use `this` to refer to XHR object
