@@ -1,8 +1,8 @@
 /* Base styles apply to all browsers: phone, tablet, desktop computer */
 
-/* ================================= 
+/* ==================================================  
   Base Element Styles
-==================================== */
+=====================================================  */
 
 /* ---- CSS Variables ---- */
 :root {
@@ -38,15 +38,22 @@ a {
     text-decoration: none;
 }
 
+.main-section p {
+    white-space: pre-wrap;
+}
+
 code {
     /* background-color: var(--gray-med); */
     color: var(--red-bright);
     /* color: var(--gray-med); */
+    white-space: pre-line;
+    /* white-space: pre-wrap; */
+    /* https://stackoverflow.com/questions/39325414/line-break-in-html-with-n */
 }
 
-/* ================================= 
+/* ==================================================  
   Base Layout Styles
-==================================== */
+===================================================== */
 
 /* ---- Navigation ---- */
 
@@ -104,9 +111,9 @@ footer {
 footer img {
     height: 1em;
 }
-/* ================================= 
+/* ==================================================  
   Media Queries
-==================================== */
+===================================================== */
 
 /* For widths >= 769px, constrain main content's width */
 @media (min-width: 769px) {
