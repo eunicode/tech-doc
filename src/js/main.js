@@ -74,7 +74,9 @@ function getJSON(url) {
                     // `resolve`'s first argument is the value the promise will become if the promise 
                     // is fulfilled
                     resolve(JSON.parse(request.responseText));
-                } 
+                } else {
+                    reject( `${Error('Couldn\'t load data. HTTP response status: ')} ${request.statusText}` );
+                }
             }
   
             // Send request
@@ -83,13 +85,13 @@ function getJSON(url) {
         }
   
     );
-
-}
-
-// First `then` onFulfillment callback
-function generateListSections(data) {
+  
+  }
+  
+  // First `then` onFulfillment callback
+  function generateListSections(data) {
     console.log({ data });
-
+  
     const DOMNode = document.querySelector('#main-doc');
     
     for (const item in data.key) {
@@ -104,40 +106,41 @@ function generateListSections(data) {
             DOMNode.appendChild(listSection);
         }
     }
-
+  
     return 'Testing chaining :)'
-
-}
-
-function createCssId(title) {
+    // throw 'Uh-oh!';
+  }
+  
+  function createCssId(title) {
     return title.replace(/ /g , '_');
-}
-
-function testChaining(string) {
+  }
+  
+  function testChaining(string) {
     console.log(`Chaining was successful if you see this string: '${string}'`);
-}
-
-// See first Promise object
-// {
-//     __proto__: Promise,
-//     [[PromiseStatus]]: "resolved",
-//     [[PromiseValue]]: { key: [...] }
-// }
-console.log(getJSON('../data/data.json'));
-
-// See Promise object returned by `then` - no arguments
-// If both arguments are omitted from `then`, then when the Promise that `then` is called on adopts
-// the state fulfilled, a new Promise is created that is identical to the Promise on which `then`
-// was called.
-// console.log(getJSON('../data/data.json').then()); // { closure: ..., data: ...}
-
-// See Promise object returned by `then` - `onFulfilled` returns a value
-// console.log(getJSON('../data/data.json').then(function(data) { return 6; })); // 6
-
-// See Promise object returned by `then` - `onFulfilled` returns nothing
-// console.log(getJSON('../data/data.json').then(function(data) { 1 + 2; })); // undefined 
-
-getJSON('../data/data.json')
+    throw 'Uh-oh :(';
+  }
+  
+  // See first Promise object
+  // {
+  //     __proto__: Promise,
+  //     [[PromiseStatus]]: "resolved",
+  //     [[PromiseValue]]: { key: [...] }
+  // }
+  console.log(getJSON('../data/data.json'));
+  
+  // See Promise object returned by `then` - no arguments
+  // If both arguments are omitted from `then`, then when the Promise that `then` is called on adopts
+  // the state fulfilled, a new Promise is created that is identical to the Promise on which `then`
+  // was called.
+  // console.log(getJSON('../data/data.json').then()); // { closure: ..., data: ...}
+  
+  // See Promise object returned by `then` - `onFulfilled` returns a value
+  // console.log(getJSON('../data/data.json').then(function(data) { return 6; })); // 6
+  
+  // See Promise object returned by `then` - `onFulfilled` returns nothing
+  // console.log(getJSON('../data/data.json').then(function(data) { 1 + 2; })); // undefined 
+  
+  getJSON('../data/data.json')
     //  The `then` method returns a Promise in the pending status.
     // The first argument of `then` is the `onFulfilled` function
     // The `onFulfilled` function has one argument, the fulfillment value
@@ -145,14 +148,15 @@ getJSON('../data/data.json')
     // If `onFulfilled` returns a value, the promise gets resolved with that value
     // If `onFulfilled` returns nothing, the promise gets resolved with `undefined`
     .then(generateListSections)
-    .then(testChaining);
-
-// TO DO
-// Use promises ✓
-// Convert XHR to fetch ✓
-// Async/await
-
-// Change anonymous functions to named functions
-// Change function declarations to arrow functions
-// Refactor onreadystatechange handler to use `this` to refer to XHR object
-// Refactor object in data.json to array
+    .then(testChaining)
+    .catch( e => console.log(e) );
+  
+  // TO DO
+  // Use promises ✓
+  // Convert XHR to fetch ✓
+  // Async/await
+  
+  // Change anonymous functions to named functions
+  // Change function declarations to arrow functions
+  // Refactor onreadystatechange handler to use `this` to refer to XHR object
+  // Refactor object in data.json to array
