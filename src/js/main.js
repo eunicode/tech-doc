@@ -105,10 +105,16 @@ function generateListSections(data) {
         }
     }
 
+    return 'Testing chaining :)'
+
 }
 
 function createCssId(title) {
     return title.replace(/ /g , '_');
+}
+
+function testChaining(string) {
+    console.log(`Chaining was successful if you see this string: '${string}'`);
 }
 
 // See first Promise object
@@ -138,7 +144,8 @@ getJSON('../data/data.json')
     // `onFulfilled` handler gets called asynchronously, as soon as the stack is empty.
     // If `onFulfilled` returns a value, the promise gets resolved with that value
     // If `onFulfilled` returns nothing, the promise gets resolved with `undefined`
-    .then(generateListSections);
+    .then(generateListSections)
+    .then(testChaining);
 
 // TO DO
 // Use promises ✓
