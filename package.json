@@ -1,7 +1,7 @@
 {
   "name": "tech-doc",
   "version": "1.0.0",
-  "description": "tech-doc",
+  "description": "Documentation for ES6+ features",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,14 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/eunicode/tech-doc.git"
   },
-  "author": "",
+  "author": "Eunice Park",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/eunicode/tech-doc/issues"
   },
   "homepage": "https://github.com/eunicode/tech-doc#readme",
   "devDependencies": {
-    "browser-sync": "^2.24.6",
+    "browser-sync": "^2.24.7",
     "gulp": "^4.0.0"
   }
 }
