@@ -123,20 +123,16 @@ function generateListSections(data) {
   
     const DOMNode = document.querySelector('#main-doc');
     
-    for (const item in data.key) {
-        if (data.key.hasOwnProperty(item)) {
-            const element = data.key[item];
-            const listSection = document.createElement('section');
+    for (const item of data) {
+        const listSection = document.createElement('section');
+        listSection.className = 'main-section';
+        listSection.id = createCssId(item.title);
 
-            listSection.className = 'main-section';
-            listSection.id = createCssId(element.title);
+        listSection.innerHTML = `<header><h2>${item.title}</h2></header>
+                                 <p>${item.info}</p>
+                                 <code>${item.code}</code>`;
 
-            listSection.innerHTML = `<header><h2>${element.title}</h2></header>
-                                  <p>${element.info}</p>
-                                  <code>${element.code}</code>`;
-
-            DOMNode.appendChild(listSection);
-        }
+        DOMNode.appendChild(listSection);
     }
   
     return 'Testing chaining :)'
@@ -149,7 +145,7 @@ function createCssId(title) {
 
 function testChaining(string) {
     console.log(`Chaining was successful if you see this string: '${string}'`);
-    throw 'Uh-oh :(';
+    throw 'Uh-oh :('; // Test catch()
 }
 
 // Create a Request object using Request() constructor 
@@ -160,6 +156,10 @@ const getJSON = new Request('../data/data.json', {
 
 // See Promise object that fetch returns
 console.log(fetch(getJSON));
+
+// See the Response object that fetch's promise resolves to
+fetch(getJSON).then( response => console.log(response));
+// Alternatively: fetch(getJSON).then(console.log);
 
 // Create fetch request. Fetch Request object with fetch() call.
 // First parameter can be a URL or Request object
@@ -182,5 +182,6 @@ fetch(getJSON)
 // Change anonymous functions to named functions
 // Change function declarations to arrow functions
 // Refactor onreadystatechange handler to use `this` to refer to XHR object
-// Refactor object in data.json to array
+// Refactor object in data.json to array ✓
 // Switch from using innerHTML + HTML text to building DOM elements
+// Switch from fetch to ES6 imports
