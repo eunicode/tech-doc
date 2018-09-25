@@ -148,6 +148,10 @@ function testChaining(string) {
     throw 'Uh-oh :('; // Test catch()
 }
 
+function generateNavLinks(data) {
+    console.log('data', data);
+}
+
 // Create a Request object using Request() constructor 
 // Second parameter is `init`, an options object
 const getJSON = new Request('../data/data.json', {
@@ -160,28 +164,40 @@ console.log(fetch(getJSON));
 // See the Response object that fetch's promise resolves to
 fetch(getJSON).then( response => console.log(response));
 // Alternatively: fetch(getJSON).then(console.log);
-
+ 
 // Create fetch request. Fetch Request object with fetch() call.
 // First parameter can be a URL or Request object
-fetch(getJSON)
+const JSON_DATA = fetch(getJSON)
     // `fetch` returns a promise that resolves to the Response object of the 
     // resource request.
     // Since `fetch` returns a promise, we can use `then` method.
     // We pass the Response object to then's onFulfillment callback function
     // We run Body.json() on the response to parse it (body text) as JSON.
-    .then( (response) => response.json() )
-    .then(generateListSections)
+    .then( (response) => response.json() );
+
+JSON_DATA.then(generateListSections)
     .then(testChaining)
+    .then(generateNavLinks)
     .catch( error => console.log(error) );
+
+// DEFAULT EXPORT  
+// export default JSON_DATA;  
+// NAMED EXPORT 
+export { JSON_DATA };   
 
 // TO DO
 // Use promises ✓
 // Convert XHR to fetch ✓
 // Async/await
+// Don't use promises for synchronous tasks
 
 // Change anonymous functions to named functions
 // Change function declarations to arrow functions
 // Refactor onreadystatechange handler to use `this` to refer to XHR object
 // Refactor object in data.json to array ✓
+// Refactor by using `import` instead of fetch + JSON
 // Switch from using innerHTML + HTML text to building DOM elements
 // Switch from fetch to ES6 imports
+
+// RANDOM NOTES
+// Naming variables JSON or DATA causes Browser Sync errors
