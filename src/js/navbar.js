@@ -1,8 +1,18 @@
 // IMPORT DEFAULT
-// import JSON_DATA from './main-section.js';
+// Import a promise
+// import myDefaultPromise from './main-section.js';
 
-// IMPORT AN EXPORT FROM A MODULE
-import { JSON_DATA } from './main-section.js'
-// Important: use paths relative to the .js file containing the module you're importing. See `import` docs
+// IMPORT A SINGLE EXPORT FROM A MODULE
+// Import a method that returns a promise
+// Important: use paths relative to the .js file containing the module you're importing. See `import` doc
+import { reuseFetch } from './main-section.js';
 
-console.log('Succesful import: ', JSON_DATA);
+function generateNavLinks(json) {
+    console.log('Imported a method that returns a promise: ', json);
+}
+
+// Imported promise
+// myDefaultPromise.then(generateNavLinks); 
+
+// Imported method that returns a promise
+reuseFetch().then(generateNavLinks);

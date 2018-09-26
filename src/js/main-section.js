@@ -123,7 +123,7 @@ function generateListSections(data) {
   
     const DOMNode = document.querySelector('#main-doc');
     
-    for (const item of data) {
+    for (const item of data) {''
         const listSection = document.createElement('section');
         listSection.className = 'main-section';
         listSection.id = createCssId(item.title);
@@ -148,10 +148,6 @@ function testChaining(string) {
     throw 'Uh-oh :('; // Test catch()
 }
 
-function generateNavLinks(data) {
-    console.log('data', data);
-}
-
 // Create a Request object using Request() constructor 
 // Second parameter is `init`, an options object
 const getJSON = new Request('../data/data.json', {
@@ -165,25 +161,37 @@ console.log(fetch(getJSON));
 fetch(getJSON).then( response => console.log(response));
 // Alternatively: fetch(getJSON).then(console.log);
  
-// Create fetch request. Fetch Request object with fetch() call.
-// First parameter can be a URL or Request object
-const JSON_DATA = fetch(getJSON)
+// // Create fetch request. Fetch Request object with fetch() call.
+// // First parameter can be a URL or Request object
+// fetch(getJSON)
+//     // `fetch` returns a promise that resolves to the Response object of the 
+//     // resource request.
+//     // Since `fetch` returns a promise, we can use `then` method.
+//     // We pass the Response object to then's onFulfillment callback function
+//     // We run Body.json() on the response to parse it (body text) as JSON.
+//     .then( (response) => response.json() )
+reuseFetch()
+    .then(generateListSections)
+    .then(testChaining)
+    .catch( error => console.log(error) );
+
+function reuseFetch() {
+    // Create fetch request. Fetch Request object with fetch() call.
+    // First parameter can be a URL or Request object
+    return fetch(getJSON)
     // `fetch` returns a promise that resolves to the Response object of the 
     // resource request.
     // Since `fetch` returns a promise, we can use `then` method.
     // We pass the Response object to then's onFulfillment callback function
     // We run Body.json() on the response to parse it (body text) as JSON.
     .then( (response) => response.json() );
-
-JSON_DATA.then(generateListSections)
-    .then(testChaining)
-    .then(generateNavLinks)
-    .catch( error => console.log(error) );
-
+}    
 // DEFAULT EXPORT  
-// export default JSON_DATA;  
-// NAMED EXPORT 
-export { JSON_DATA };   
+// Export a promise https://stackoverflow.com/questions/42958334/how-can-i-export-promise-result
+// export default fetch(getJSON).then((res) => res.json());
+// NAMED EXPORT
+// Export a method that returns a promise https://stackoverflow.com/questions/38310183/importing-exporting-only-after-certain-promises-have-resolved
+export { reuseFetch };
 
 // TO DO
 // Use promises ✓
