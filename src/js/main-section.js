@@ -156,25 +156,10 @@ const getJSON = new Request('../data/data.json', {
 
 // See Promise object that fetch returns
 console.log(fetch(getJSON));
-
 // See the Response object that fetch's promise resolves to
 fetch(getJSON).then( response => console.log(response));
 // Alternatively: fetch(getJSON).then(console.log);
  
-// // Create fetch request. Fetch Request object with fetch() call.
-// // First parameter can be a URL or Request object
-// fetch(getJSON)
-//     // `fetch` returns a promise that resolves to the Response object of the 
-//     // resource request.
-//     // Since `fetch` returns a promise, we can use `then` method.
-//     // We pass the Response object to then's onFulfillment callback function
-//     // We run Body.json() on the response to parse it (body text) as JSON.
-//     .then( (response) => response.json() )
-reuseFetch()
-    .then(generateListSections)
-    .then(testChaining)
-    .catch( error => console.log(error) );
-
 function reuseFetch() {
     // Create fetch request. Fetch Request object with fetch() call.
     // First parameter can be a URL or Request object
@@ -186,11 +171,20 @@ function reuseFetch() {
     // We run Body.json() on the response to parse it (body text) as JSON.
     .then( (response) => response.json() );
 }    
+
+reuseFetch()
+    .then(generateListSections)
+    .then(testChaining)
+    .catch( error => console.log(error) );
+
 // DEFAULT EXPORT  
-// Export a promise https://stackoverflow.com/questions/42958334/how-can-i-export-promise-result
+// Export a promise 
+// https://stackoverflow.com/questions/42958334/how-can-i-export-promise-result
 // export default fetch(getJSON).then((res) => res.json());
+
 // NAMED EXPORT
-// Export a method that returns a promise https://stackoverflow.com/questions/38310183/importing-exporting-only-after-certain-promises-have-resolved
+// Export a method that returns a promise 
+// https://stackoverflow.com/questions/38310183/importing-exporting-only-after-certain-promises-have-resolved
 export { reuseFetch };
 
 // TO DO

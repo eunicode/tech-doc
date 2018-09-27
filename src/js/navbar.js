@@ -8,7 +8,22 @@
 import { reuseFetch } from './main-section.js';
 
 function generateNavLinks(json) {
-    console.log('Imported a method that returns a promise: ', json);
+    const targetNode = document.querySelector('.nav-link-container');
+
+    const sections = document.querySelectorAll('.main-section');
+    console.log('sections: ', sections);
+
+    for (let i = 0; i < json.length; i++) {
+        const node = document.createElement('a');
+        node.className = 'nav-link';
+        node.textContent = json[i].title;
+        node.href = `#${sections[i].id}`;
+
+        const outerNode = document.createElement('ul');
+
+        outerNode.appendChild(node);
+        targetNode.appendChild(outerNode);
+    }
 }
 
 // Imported promise
