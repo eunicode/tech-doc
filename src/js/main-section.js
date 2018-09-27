@@ -190,16 +190,15 @@ export { reuseFetch };
 // TO DO
 // Use promises ✓
 // Convert XHR to fetch ✓
-// Async/await
-// Don't use promises for synchronous tasks
+// !Async/await
+// !Don't use promises for synchronous tasks
 
 // Change anonymous functions to named functions
 // Change function declarations to arrow functions
 // Refactor onreadystatechange handler to use `this` to refer to XHR object
 // Refactor object in data.json to array ✓
-// Refactor by using `import` instead of fetch + JSON
+// !Refactor by using `import` instead of fetch + JSON
 // Switch from using innerHTML + HTML text to building DOM elements
-// Switch from fetch to ES6 imports
 
 // RANDOM NOTES
 // Naming variables JSON or DATA causes Browser Sync errors

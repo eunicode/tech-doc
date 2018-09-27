@@ -4,7 +4,8 @@
   "description": "Documentation for ES6+ features",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d src"
   },
   "repository": {
     "type": "git",
@@ -15,9 +16,10 @@
   "bugs": {
     "url": "https://github.com/eunicode/tech-doc/issues"
   },
-  "homepage": "https://github.com/eunicode/tech-doc#readme",
+  "homepage": "https://eunicode.github.io/tech-doc",
   "devDependencies": {
     "browser-sync": "^2.24.7",
+    "gh-pages": "^2.0.0",
     "gulp": "^4.0.0"
   }
 }
