@@ -1,0 +1,208 @@
+/* Base styles apply to all browsers: phone, tablet, desktop computer */
+
+/* ==================================================  
+  Base Element Styles
+=====================================================  */
+
+/* ---- CSS Variables ---- */
+:root {
+    --gray-dark: #3a3a3a;
+    --gray-light:#f2f2f2;
+    --gray-light-med: #d9d9d9;
+    --gray-med: #757882;
+    --red-bright: #ff6473;
+    --aqua: #6ef7c8;
+    --aqua-med: #5cc1b3;
+}
+
+/* Include padding and border in the element's total width and height */
+* {
+	box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--gray-dark);
+    margin: 0;
+    line-height: 1.6;
+    /* background-color: var(--gray-light); */
+}
+
+ul {
+    list-style: none;
+    padding: 0px; /* Override default */
+    margin: 0px /* Override default and fix collapsing margins */
+}
+
+a {
+    text-decoration: none;
+    color: var(--aqua-med);
+}
+
+a:hover {
+    color: var(--gray-med);
+}
+
+.main-section p {
+    white-space: pre-wrap;
+}
+
+code {
+    /* background-color: var(--gray-med); */
+    color: var(--red-bright);
+    /* color: var(--gray-med); */
+    white-space: pre-line;
+    /* white-space: pre-wrap; */
+    /* https://stackoverflow.com/questions/39325414/line-break-in-html-with-n */
+}
+
+pre {
+    display: inline;
+}
+
+/* ==================================================  
+  Base Layout Styles
+===================================================== */
+
+/* ---- Navigation ---- */
+
+nav {
+    text-align: center;
+}
+
+nav header {
+    color: white;
+    background-color: var(--aqua-med);
+    padding: 4em 0em;
+}
+
+nav h1 {
+    margin: 0px; /* Get rid of space on top */
+}
+
+nav ul {
+    padding: 10px;
+    background-color: var(--gray-light);
+}
+
+nav li {
+    background-color: var(--gray-light);
+}
+
+nav a {
+    padding: 10px 0px;
+    display: block; /* Can't apply vertical padding on inline elements */
+    color: var(--aqua-med);
+    cursor: pointer;
+}
+
+nav a:hover {
+    /* color: var(--aqua); */
+    background-color: var(--gray-light-med);
+}
+
+/* ---- Layout Containers ---- */
+
+main {
+    padding-right: 1em;
+	padding-left: 1em;
+}
+
+.main-section:last-child {
+    margin-bottom: 2em;
+}
+
+footer {
+    background-color: var(--gray-light);
+    color: var(--gray-med);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .8em;
+    letter-spacing: 1px;
+    padding: 1em 0;
+}
+
+footer img {
+    height: 1em;
+}
+
+/* ==================================================  
+  Media Queries
+===================================================== */
+
+/* For widths >= 769px, constrain main content's width */
+@media (min-width: 769px) {
+	main {
+		width: 80%;
+		margin: 0 auto; /* Centers element, but not text */
+		max-width: 1150px; /* Since max-width is set, even on extremely wide browsers, the main text will be contained */
+	}
+}
+
+/* ---- For browsers that support Grid ---- */
+
+@supports (grid-area: auto) {
+
+    /* Nav bar on top (1 col) */
+
+    nav {
+        grid-area: nav;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    body {
+        height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+        "nav"
+        "main"
+        "footer"
+    }
+
+    /* Nav bar on left (2 col) */
+
+    @media (min-width: 769px) {
+        body {
+            height: 100vh; /* Set height of container to 100vh for sticky footer.
+            Alternatively, set both `html` and `body` to 100%. */
+            grid-template-columns: 20em auto;
+            grid-template-rows: 1fr auto; /* 1fr will take up remaining vertical
+            space, auto will take up the height of the content. [Sticky footer] */
+            grid-template-areas: 
+            "nav main"
+            "footer footer"
+        }
+
+        nav {
+            background-color: var(--gray-light);
+        }
+
+        footer {
+            background-color: var(--gray-light-med);
+        }
+    }
+}
+
+/* ---- For browsers that support Flexbox ---- */
+
+/* @supports (display: flex) {
+    body {
+        display: flex;
+    }
+
+    @media (min-width: 769px) {
+        flex-direction: row;
+    }
+} */
+
+/* You can turn the top nav bar into a sidebar with Flexbox with `flex-direction: row`, 
+but you need to add extra html tags to wrap the nav bar and main content, 
+since we want footer to remain `flex-direction: column` */
