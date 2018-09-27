@@ -5,7 +5,7 @@
 // IMPORT A SINGLE EXPORT FROM A MODULE
 // Import a method that returns a promise
 // Important: use paths relative to the .js file containing the module you're importing. See `import` doc
-import { reuseFetch } from './main-section.js';
+import { reuseFetch } from './tech-doc/main-section.js';
 
 function generateNavLinks(json) {
     const targetNode = document.querySelector('.nav-link-container');

@@ -202,4 +202,4 @@ export { reuseFetch };
 
 // RANDOM NOTES
 // Naming variables JSON or DATA causes Browser Sync errors
-console.log('random does gh pages get its source from master?')
+console.log('random does gh pages get its source from master?');
