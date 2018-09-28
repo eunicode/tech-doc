@@ -150,7 +150,7 @@ function testChaining(string) {
 
 // Create a Request object using Request() constructor 
 // Second parameter is `init`, an options object
-const getJSON = new Request('/data/data.json', {
+const getJSON = new Request('../data/data.json', {
     method: 'GET'
 });
 
@@ -202,4 +202,3 @@ export { reuseFetch };
 
 // RANDOM NOTES
 // Naming variables JSON or DATA causes Browser Sync errors
-console.log('random does gh pages get its source from master?');
