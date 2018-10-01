@@ -150,7 +150,7 @@ function testChaining(string) {
 
 // Create a Request object using Request() constructor 
 // Second parameter is `init`, an options object
-const getJSON = new Request('./data/data.json', {
+const getJSON = new Request('data/data.json', {
     method: 'GET'
 });
 
