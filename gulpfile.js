@@ -7,16 +7,23 @@
 // https://www.liquidlight.co.uk/blog/article/how-do-i-update-to-gulp-4/
 // https://github.com/gulpjs/gulp/blob/4.0/docs/recipes/minimal-browsersync-setup-with-gulp4.md
 
+// Browsersync Docs
+// https://browsersync.io/docs/api
+// https://browsersync.io/docs/options
+
 // Include gulp
 var gulp = require('gulp');
 
-// Include plugin
-var browserSync = require('browser-sync').create(); // create a browser sync instance.
+// Require the Browsersync module export
+// Create an unnamed Browsersync instance. This allows you to call methods on the instance instead
+// of the main Browsersync module export
+var browserSync = require('browser-sync').create();
 
 // Development Tasks 
 
-// Start BrowserSync server
 function serve(done) {
+  // Start BrowserSync service. It will launch a server.
+  // First argument is the configuration object for your Browsersync instance
   browserSync.init({
     server: {
       baseDir: 'src'
@@ -26,6 +33,7 @@ function serve(done) {
 }
 
 function reload(done) {
+  // The `reload` method will inform browser about changed files and cause a refresh or inject files
   browserSync.reload();
   done();
 }
