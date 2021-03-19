@@ -31,3 +31,47 @@ Check out the live site here: https://eunicode.github.io/tech-doc/
 - How to export/import promises with ES6 modules
 - How to generate DOM elements from data
 - How to use relative paths with HTTP requests and ES6 modules
+
+## Set Up
+
+Download/clone repo
+
+Move to project folder
+
+```
+cd portfolio-js
+```
+
+Install dependencies
+
+```
+npm install
+```
+
+Run the default gulp command to start the live server
+
+```
+gulp
+```
+
+When finished developing, stop the server
+
+```
+Ctrl + C
+```
+
+To deploy to GitHub Pages, run npm script
+
+```
+npm run deploy
+```
+
+To audit/update npm packages
+
+```
+npm audit
+npm audit fix
+
+npm update
+npm outdated
+```
